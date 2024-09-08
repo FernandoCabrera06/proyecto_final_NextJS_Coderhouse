@@ -5,8 +5,8 @@ const ProductList = async ({ category }) => {
   let items = []
 
   try {
-    items = await fetch(`http://${process.env.VERCEL_URL}/api/productos/${category}`, {
-      cache: "force-cache",
+    items = await fetch(`/api/productos/${category}`, {
+      cache: "no-store",
       next: {
         tags: ["productos"],
       },
