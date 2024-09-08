@@ -13,7 +13,7 @@ const ProductsTable = () => {
   const fetchItems = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://${process.env.VERCEL_URL}/api/productos/todos`, {
+      const response = await fetch(`/api/productos/todos`, {
         cache: "no-store",
       });
       const data = await response.json();
