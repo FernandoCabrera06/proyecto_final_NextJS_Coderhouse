@@ -6,12 +6,15 @@ export async function generateMetadata({ params }) {
   const { id } = params
   let producto = {}
   try {
-    producto = await fetch(`/api/product/${id}`, {
-      cache: "no-store",
-      next: {
-        revalidate: 0,
-      },
-    }).then((r) => r.json())
+    producto = await fetch(
+      `https://${process.env.VERCEL_URL}/api/product/${id}`,
+      {
+        cache: "no-store",
+        next: {
+          revalidate: 0,
+        },
+      }
+    ).then((r) => r.json())
   } catch (e) {
     console.log("Hubo un error el producto: " + e)
   }
