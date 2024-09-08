@@ -42,7 +42,7 @@ export default function Home() {
               >
                 <Image
                   className="category-circle"
-                  src={`/${categoryName}.png`}
+                  src={`/${categoryName.toLocaleLowerCase()}.png`}
                   alt={categoryName}
                   width={400}
                   height={400}
