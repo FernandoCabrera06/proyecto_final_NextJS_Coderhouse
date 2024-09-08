@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="error-container mt-30">
         <h1>⚠️Ups! Hubo un error⚠️</h1>
         <Image
-          src="/error.jpg"
+          src="/error.png"
           alt="Imagen de perro tapandose los ojos"
           width={500}
           height={500}
