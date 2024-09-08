@@ -1,19 +1,17 @@
 "use client"
-
-import { createContext, useContext, useState, useEffect } from "react"
 import { auth, provider } from "@/app/firebase/config"
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup} from "firebase/auth"
-
+import { signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { createContext, useContext, useState, useEffect } from "react"
 const AuthContext = createContext()
-  
+
 export const useAuthContext = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }) => {
-    const [userLogin, setUserLogin] = useState({
-      logged: false,
-      email: null,
-      uid: null,
-    })
+  const [user, setUser] = useState({
+    logged: false,
+    emaiL: null,
+    uid: null
+})
 
 const registerUser = async (values) =>{
     try {
@@ -27,41 +25,45 @@ const registerUser = async (values) =>{
 const loginUser = async (values)=>{
     try {
 await signInWithEmailAndPassword(auth, values.email, values.password)
+document.location.reload();
 
 } catch (error) {
     console.error("Error al iniciar sesión:", error);
   }
 }
 
-const logout = async ()=>{
+const logout = async () => {
   await signOut(auth)
+  document.location.reload();
 }
 
-const googleLogin = async ()=>{
+const googleLogin = async () => {
   await signInWithPopup(auth, provider)
 }
 
 useEffect(()=>{
-  onAuthStateChanged(auth, (user)=>{
-    console.log(user)
-
+  onAuthStateChanged(auth, (user) => {
     if(user){
-      setUserLogin({
-        logged:true,
-        email:user.email,
-        uid:user.uid
-      })
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("userLogged", true)
+      }
+      setUser({
+        email: user.email,
+        uid: user.uid
+    })
     }else{
-      setUserLogin({
-        logged:false,
-        email:null,
-        uid:null
-      })
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("userLogged", false)
+      }
+      setUser({
+        emaiL: null,
+        uid: null
+    })
     }
   })
 },[])
 
   return (
-    <AuthContext.Provider value={{ userLogin, registerUser, loginUser, logout, googleLogin}}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ registerUser, loginUser, logout, googleLogin}}>{children}</AuthContext.Provider>
   )
 }

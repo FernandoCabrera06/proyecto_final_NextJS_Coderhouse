@@ -4,21 +4,21 @@ import Boton from "../ui/Boton"
 import {useAuthContext} from "../context/AuthContext"
 
 const LoginForm = () => {
-    const {registerUser, loginUser, googleLogin}= useAuthContext()
+  const { registerUser, loginUser, googleLogin } = useAuthContext()
   const [values, setValues] = useState({
-    email: "",
-    password: "",
+      email: '',
+      password: ''
   })
 
   const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
-    })
+      setValues({
+          ...values,
+          [e.target.name]: e.target.value
+      })
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+      e.preventDefault()
   }
 
   return (

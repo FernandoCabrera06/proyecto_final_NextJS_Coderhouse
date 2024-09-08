@@ -1,10 +1,23 @@
 "use client"
+import { useEffect, useState } from "react"
 import { useAuthContext } from "@/components/context/AuthContext"
+import Loading from "@/app/catalogo/detail/loading"
 
 const AdminLayout = ({ children, login }) => {
-  const { userLogin } = useAuthContext()
+  const [isUserLogged, setIsUserLogged] = useState(null)
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const userLogged = localStorage.getItem("userLogged") === "true"
+      setIsUserLogged(userLogged)
+    }
+  }, [])
 
-  return <>{ userLogin ? children : login}</>
+  if (isUserLogged === null) {
+    return <Loading/>
+  }
+
+  return <>{isUserLogged ? children : login}</>
 }
 
 export default AdminLayout
