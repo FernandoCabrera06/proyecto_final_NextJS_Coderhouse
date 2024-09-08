@@ -1,0 +1,39 @@
+/*CATEGORI CIRCLE HOME*/
+.category-circle-section {
+  display: flex;
+  justify-content: center;
+  margin: 6rem auto;
+}
+.category-circle-container {
+  display: inline-block;
+  margin: 0px 5.5%;
+}
+.category-circle-container a {
+  text-decoration: none;
+}
+.category-circle {
+  width: 14rem;
+  height: 8rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #edc261;
+}
+.category-circle:hover {
+  box-shadow: 0 0 0 6px #edc261;
+  transform: scale(1.2);
+}
+/*BANNER - HOME*/
+.section-banner {
+  display: flex;
+  justify-content: center;
+}
+.banner-container {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  background: linear-gradient(to top, #0575e6, #021b79);
+  border-radius: 30px;
+}
+.banner-container img {
+  width: 60%;
+  height: 90%;
+}
