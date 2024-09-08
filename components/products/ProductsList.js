@@ -6,7 +6,7 @@ const ProductList = async ({ category }) => {
 
   try {
     items = await fetch(`/api/productos/${category}`, {
-      cache: "force-cache",
+      cache: "no-store",
       next: {
         tags: ["productos"],
       },
