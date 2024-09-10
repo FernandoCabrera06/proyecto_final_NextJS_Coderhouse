@@ -16,6 +16,7 @@ console.log("Fetching from URL:", apiUrl);
     console.log(items);
   } catch (e) {
     console.log("Hubo un error al traer los datos: " + e)
+    console.log("Fetching from URL:", apiUrl);
   }
 
   return (
