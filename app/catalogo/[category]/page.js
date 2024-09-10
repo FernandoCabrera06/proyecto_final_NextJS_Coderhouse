@@ -4,9 +4,10 @@ import Footer from "@/components/ui/Footer"
 import Header from "@/components/ui/Header"
 import { Suspense } from "react"
 
-export async function generateMetadata({ params, searchParams }, parents) {
+export async function generateMetadata({ params }) {
+  const { category } = params;
   return {
-    title: `Rocco alimentos - ${params.category}`,
+    title: `Rocco alimentos - ${category}`,
     description: "E-commerce de alimentos para mascotas",
     keywords: ["alimento", "Perros", "Aves", "Gatos", "Reptiles", "Peces"],
   }
@@ -28,6 +29,14 @@ export const revalidate = 3600
 const Catalogo = ({ params }) => {
   const { category } = params
 
+  if (!category) {
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Title style="text-3xl">Error: Category not found</Title>
+      </div>
+    );
+  }
+
   return (
     <main>
       <Header />
@@ -37,7 +46,7 @@ const Catalogo = ({ params }) => {
       <div className="flex flex-row">
         <CategoriesMenu />
         <Suspense fallback={<h3>Cargando...</h3>}>
-        <ProductsList category={category.toLocaleLowerCase()} />
+        <ProductsList category={category} />
         </Suspense>
       </div>
       <Footer />

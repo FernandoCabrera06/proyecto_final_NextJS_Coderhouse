@@ -11,6 +11,7 @@ const ProductDetail = async ({ id }) => {
         revalidate: 0,
       },
     }).then((r) => r.json())
+    console.log("PRODUCT DETAIL")
     console.log(item);
   } catch (e) {
     console.log("Hubo un error el producto: " + e)
@@ -37,7 +38,6 @@ const ProductDetail = async ({ id }) => {
             <p className="Info"> Categoria: {item.categoryId}</p>
             <p className="Info"> Precio: ${item.price}</p>
             <p className={item.stock ? "Info" : "Info sinStock"}>
-              {" "}
               Stock disponible: {item.stock}
             </p>
           </section>
