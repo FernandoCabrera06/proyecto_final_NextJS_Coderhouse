@@ -6,7 +6,7 @@ const ProductDetail = async ({ id }) => {
   let item = {}
   try {
     item = await fetch(`http://${process.env.VERCEL_URL}/api/product/${id}`, {
-      cache: "no-store",
+      cache: "no-cache",
       next: {
         revalidate: 0,
       },

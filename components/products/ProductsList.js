@@ -6,7 +6,7 @@ const ProductList = async ({ category }) => {
 
   try {
      items = await fetch(`http://${process.env.VERCEL_URL}/api/productos/${category}`, {
-        cache: 'no-store',
+        cache: 'no-cache',
     }).then(r => r.json())
   } catch (e) {
     console.log("Hubo un error al traer los datos: " + e)

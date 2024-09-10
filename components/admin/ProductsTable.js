@@ -14,7 +14,7 @@ const ProductsTable = () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/productos/todos`, {
-        cache: "no-store",
+        cache: "no-cache",
       });
       const data = await response.json();
       if (Array.isArray(data)) {
