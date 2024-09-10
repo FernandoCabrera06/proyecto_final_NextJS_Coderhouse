@@ -5,7 +5,11 @@ const ProductList = async ({ category }) => {
   let items = []
 
   try {
-     items = await fetch(`https://${process.env.VERCEL_URL}/api/productos/${category}`, {
+
+    const apiUrl = `https://${process.env.VERCEL_URL}/api/productos/${category}`;
+console.log("Fetching from URL:", apiUrl);
+
+     items = await fetch(apiUrl, {
         cache: 'no-cache',
     }).then(r => r.json())
     console.log("PRODUCT LIST")
