@@ -7,7 +7,7 @@ export async function generateMetadata({ params }) {
   let producto = {}
   try {
     producto = await fetch(
-      `https://${process.env.VERCEL_URL}/api/product/${id}`,
+      `http://${process.env.VERCEL_URL}/api/product/${id}`,
       {
         cache: "no-store",
         next: {

@@ -5,18 +5,16 @@ const ProductList = async ({ category }) => {
   let items = []
 
   try {
-    items = await fetch(`https://${process.env.VERCEL_URL}/api/productos/${category}`, {
-      cache: "no-store",
-      next: {
-        tags: ["productos"],
-      },
-    }).then((r) => r.json())
+     items = await fetch(`http://${process.env.VERCEL_URL}/api/productos/${category}`, {
+        cache: 'no-store',
+    }).then(r => r.json())
   } catch (e) {
     console.log("Hubo un error al traer los datos: " + e)
   }
 
   return (
     <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">
+      {console.table(items)}
       {items.map((item) => (
         <ProductCard key={item.id} item={item} />
       ))}
