@@ -4,9 +4,8 @@ const ProductList = async ({ category }) => {
   //cache configurado, para no cachear nunca y la informacion siempre este actulizada.
   let items = []
 
+  const apiUrl = `https://${process.env.VERCEL_URL}/api/productos/${category}`;
   try {
-
-    const apiUrl = `https://${process.env.VERCEL_URL}/api/productos/${category}`;
 console.log("Fetching from URL:", apiUrl);
 
      items = await fetch(apiUrl, {
