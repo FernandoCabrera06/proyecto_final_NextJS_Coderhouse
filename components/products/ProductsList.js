@@ -1,32 +1,20 @@
 import ProductCard from "./ProductCard"
 
 const ProductList = async ({ category }) => {
-  let items = [];
+  //cache configurado, para no cachear nunca y la informacion siempre este actulizada.
+  let items = []
 
   try {
-    const apiUrl = `https://${process.env.VERCEL_URL}/api/productos/${category}`;
-    console.log("Fetching from URL:", apiUrl);
-
-    const response = await fetch(apiUrl, {
-      cache: 'no-cache',
-    });
-
+     items = await fetch(`http://${process.env.VERCEL_URL}/api/productos/${category}`, {
+        cache: 'no-cache',
+    }).then(r => r.json())
+    
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      const text = await response.text(); // Leer la respuesta como texto
-      console.error(`Expected JSON response, but got ${contentType}: ${text}`);
-      return; // O lanzar un error
-    }
-
-    items = await response.json();
-    console.log("PRODUCT LIST");
-    console.log(items);
   } catch (e) {
-    console.error("Hubo un error al traer los datos: " + e.message);
+    console.log("Hubo un error al traer los datos: " + e)
   }
 
   return (
@@ -36,7 +24,7 @@ const ProductList = async ({ category }) => {
         <ProductCard key={item.id} item={item} />
       ))}
     </section>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList
