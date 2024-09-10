@@ -5,7 +5,7 @@ import GoBack from "../ui/GoBack"
 const ProductDetail = async ({ id }) => {
   let item = {}
   try {
-    item = await fetch(`http://${process.env.VERCEL_URL}/api/product/${id}`, {
+    item = await fetch(`https://${process.env.VERCEL_URL}/api/product/${id}`, {
       cache: "no-cache",
       next: {
         revalidate: 0,
