@@ -15,6 +15,7 @@ export async function generateMetadata({ params }) {
         },
       }
     ).then((r) => r.json())
+    console.log(producto);
   } catch (e) {
     console.log("Hubo un error el producto: " + e)
   }

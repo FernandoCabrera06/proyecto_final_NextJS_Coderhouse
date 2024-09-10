@@ -11,6 +11,7 @@ const ProductDetail = async ({ id }) => {
         revalidate: 0,
       },
     }).then((r) => r.json())
+    console.log(item);
   } catch (e) {
     console.log("Hubo un error el producto: " + e)
   }
