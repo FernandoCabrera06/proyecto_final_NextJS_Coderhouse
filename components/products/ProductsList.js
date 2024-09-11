@@ -19,7 +19,6 @@ const ProductList = async ({ category }) => {
 
   return (
     <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">
-      {console.table(items)}
       {items.map((item) => (
         <ProductCard key={item.id} item={item} />
       ))}

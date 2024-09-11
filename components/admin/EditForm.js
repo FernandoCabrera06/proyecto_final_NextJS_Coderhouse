@@ -41,7 +41,6 @@ const EditForm = () => {
         const productDocRef = doc(db, "productos", id);
         const productDoc = await getDoc(productDocRef);
         if (productDoc.exists()) {
-          console.table(productDoc.data());
           setValues(productDoc.data());
         } else {
           console.log("No se encontró el producto.");
